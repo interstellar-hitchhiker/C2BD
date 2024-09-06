@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Courage to Be Disliked</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: linear-gradient(to bottom right, #b2dfdb, #4db6ac);
+      color: white;
+      overflow: hidden;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      transition: background 2s ease;
+    }
+
+    h1, p {
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      font-size: 4rem;
+      opacity: 0.9;
+    }
+
+    #container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: transform 2s ease;
+    }
+
+    #circle {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.2);
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+      animation: pulse 5s infinite;
+    }
+
+    #text-area {
+      position: absolute;
+      text-align: center;
+      font-size: 1.5rem;
+      opacity: 0.8;
+      width: 80%;
+      line-height: 1.8;
+      pointer-events: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    #floating-text {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5rem;
+      color: #ffffff;
+      animation: fadeIn 5s ease-in-out infinite;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      50% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+    
+    #quote {
+      font-style: italic;
+      opacity: 0.8;
+      transition: opacity 3s ease;
+    }
+
+    /* Background color change on interaction */
+    body:hover {
+      background: linear-gradient(to top left, #37474f, #455a64);
+    }
+
+    body:hover #circle {
+      background: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 80px rgba(255, 255, 255, 0.9);
+    }
+
+    /* Fade-in text */
+    body:hover #quote {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+<div id="container">
+  <div id="circle"></div>
+  <div id="text-area">
+    <h1>The Courage to Be Disliked</h1>
+    <p id="quote">"The past does not exist, only the present moment defines your life."</p>
+  </div>
+</div>
+
+<div id="floating-text">
+  "All problems are interpersonal relationship problems."
+</div>
+
+<script>
+  // Interactive movement effect
+  document.addEventListener("mousemove", function(e) {
+    const circle = document.getElementById("circle");
+    const x = e.pageX - window.innerWidth / 2;
+    const y = e.pageY - window.innerHeight / 2;
+    
+    circle.style.transform = `translate(${x * 0.05}px, ${y * 0.05}px)`;
+  });
+
+  // Randomly change the floating text on interval
+  const quotes = [
+    "We do not suffer from the shock of our experiences, but the meaning we give them.",
+    "Life is not about being controlled by the past, but the courage to choose your present.",
+    "Separation of tasks brings freedom from judgment.",
+    "We are not determined by our experiences, but by the goals we set."
+  ];
+
+  setInterval(() => {
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    document.getElementById("floating-text").innerHTML = `"${randomQuote}"`;
+  }, 8000);
+</script>
+
+</body>
+</html>
